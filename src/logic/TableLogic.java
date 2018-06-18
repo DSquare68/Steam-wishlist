@@ -5,6 +5,7 @@ import data.Games;
 import gui.Central;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.layout.HBox;
 
 public class TableLogic {
 	static Games games = new Games(); //TODO Games('class'.getcurrent/last/fromapril2015
@@ -13,5 +14,4 @@ public class TableLogic {
 		games.getGames().forEach(e->{e.setHash(games.getGames().indexOf(e)+1);gamesList.add(e);});
 		Central.table.setItems(gamesList);
 	}
-
 }

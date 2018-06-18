@@ -10,11 +10,12 @@ public class Window {
 	public static int width=(int) (dimension.width);
 	public static int height=(int) (dimension.height);
 	
-	public static Frame welcome, central, firstRun;
+	public static Frame welcome, central, firstRun, filtr;
 	public Window() {
 		welcome= new Frame(width/5,height/4.5);
 		central = new Frame(4*width/5,2*height/3);
 		firstRun = new Frame(width/5,height/4.5);
+		filtr = new Frame(2*central.width/3,central.height/3);
 	}
 	public static void refreshValues() {
 		width=(int) (dimension.width*Settings.scaleWindows);
