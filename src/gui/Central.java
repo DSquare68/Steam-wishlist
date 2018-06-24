@@ -1,9 +1,12 @@
 package gui;
 
+import java.sql.Savepoint;
+import java.util.ArrayList;
+
 import Resources.ResourceLoader;
-import data.Game;
 import data.Language;
 import data.Window;
+import game.GameTable;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
@@ -12,6 +15,9 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableCell;
@@ -28,29 +34,61 @@ import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import logic.FooterLogic;
+import logic.MenuLogic;
 import logic.TableLogic;
 import logic.TopLogic;
 
 public class Central extends BorderPane {
 
-	public static TableView<Game> table = new TableView<Game>();
+	public static TableView<GameTable> table = new TableView<GameTable>();
 	HBox top = new HBox();
 	HBox footer = new HBox();
+	MenuBar menuBar = new MenuBar();
 	
 	public Central() {
 		init();
+		initMenu();
 		initTop();
 		initTable();
 		initFooter();
 		scaleAllNodes();
 	}
+	
 	private void init() {
-		this.setTop(top);
+		this.setTop(new VBox(menuBar,top));
 		this.setCenter(table);
 		this.setBottom(footer);
+	}
+	private void initMenu() {
+		menuBar.setPickOnBounds(true);
+        Menu menuFile = new Menu(Language.texts.getString("wishlist"));
+        Menu menuBase = new Menu(Language.texts.getString("dataBase"));
+        Menu menuView = new Menu(Language.texts.getString("view"));
+        Menu menuSettings = new Menu(Language.texts.getString("settings"));
+        
+        MenuItem changeUser = new MenuItem(Language.texts.getString("changeUser"));
+        changeUser.setOnAction(e->MenuLogic.changeUser());
+        MenuItem reload = new MenuItem(Language.texts.getString("reload"));
+        reload.setOnAction(e->MenuLogic.reload());
+        MenuItem home = new MenuItem(Language.texts.getString("home"));
+        home.setOnAction(e->MenuLogic.home());
+        menuFile.getItems().addAll(changeUser,reload,home);
+        
+        MenuItem reloadDB = new MenuItem(Language.texts.getString("reload"));
+        reloadDB.setOnAction(e->MenuLogic.reload());
+        MenuItem saveDiscount = new MenuItem(Language.texts.getString("saveDiscount"));
+        saveDiscount.setOnAction(e->MenuLogic.saveDiscount(new ArrayList<GameTable>( table.getItems())));
+        MenuItem saveState = new MenuItem(Language.texts.getString("saveState"));
+        saveState.setOnAction(e->MenuLogic.saveState(new ArrayList<GameTable>( table.getItems())));
+        menuBase.getItems().addAll(reloadDB,saveDiscount,saveState);
+        
+        menuBar.getMenus().addAll(menuFile, menuBase, menuView,menuSettings);
+
+		
 	}
 	private void initTop() {
 		top.setAlignment(Pos.CENTER_LEFT);
@@ -108,57 +146,57 @@ public class Central extends BorderPane {
 	}
 	private void initTable() {
 		table.setEditable(true);
-		String[] COLUMNS = Game.toTableNames();
+		String[] COLUMNS = GameTable.toTableNames();
 		for(int i=0;i<COLUMNS.length;i++) {
-			TableColumn<Game,DoubleProperty> columnDouble = new TableColumn<>(COLUMNS[i]);
-			TableColumn<Game,IntegerProperty> columnInt = new TableColumn<>(COLUMNS[i]);
-			TableColumn<Game,String> columnStr = new TableColumn<>(COLUMNS[i]);
-			TableColumn<Game, BooleanProperty>columnBool =new TableColumn<>(COLUMNS[i]);
+			TableColumn<GameTable,DoubleProperty> columnDouble = new TableColumn<>(COLUMNS[i]);
+			TableColumn<GameTable,IntegerProperty> columnInt = new TableColumn<>(COLUMNS[i]);
+			TableColumn<GameTable,String> columnStr = new TableColumn<>(COLUMNS[i]);
+			TableColumn<GameTable, BooleanProperty>columnBool =new TableColumn<>(COLUMNS[i]);
 			switch(i) {
 				case 0:
-					columnInt.setCellValueFactory(new PropertyValueFactory<Game,IntegerProperty>("hash"));
+					columnInt.setCellValueFactory(new PropertyValueFactory<GameTable,IntegerProperty>("hash"));
 					columnInt.setStyle("-fx-alignment: center ;");
 					table.getColumns().add(columnInt);
 					break;
 				case 1:
-					columnStr.setCellValueFactory(new PropertyValueFactory<Game,String>("name"));
+					columnStr.setCellValueFactory(new PropertyValueFactory<GameTable,String>("name"));
 					table.getColumns().add(columnStr);
 					break;
 				case 2:
-					columnDouble.setCellValueFactory(new PropertyValueFactory<Game,DoubleProperty>("price"));
+					columnDouble.setCellValueFactory(new PropertyValueFactory<GameTable,DoubleProperty>("price"));
 					columnDouble.setStyle("-fx-alignment: center ;");
 					table.getColumns().add(columnDouble);
 					break;
 				case 3:
-					columnDouble.setCellValueFactory(new PropertyValueFactory<Game,DoubleProperty>("originalPrice"));
+					columnDouble.setCellValueFactory(new PropertyValueFactory<GameTable,DoubleProperty>("originalPrice"));
 					columnDouble.setStyle("-fx-alignment: center ;");
 					table.getColumns().add(columnDouble);
 					break;
 				case 4:
-					columnStr.setCellValueFactory(new PropertyValueFactory<Game,String>("discountS"));
+					columnStr.setCellValueFactory(new PropertyValueFactory<GameTable,String>("discountS"));
 					columnStr.setStyle("-fx-alignment: center ;");
 					table.getColumns().add(columnStr);
 					break;
 				case 5:
-					columnStr.setCellValueFactory(new PropertyValueFactory<Game,String>("reliseDate"));
+					columnStr.setCellValueFactory(new PropertyValueFactory<GameTable,String>("reliseDate"));
 					table.getColumns().add(columnStr);
 					break;
 				case 6:
-					columnDouble.setCellValueFactory(new PropertyValueFactory<Game,DoubleProperty>("wishNumber"));
+					columnDouble.setCellValueFactory(new PropertyValueFactory<GameTable,DoubleProperty>("wishNumber"));
 					columnDouble.setStyle("-fx-alignment: center ;");
 					table.getColumns().add(columnDouble);
 					break;
 				case 7:
-					columnDouble.setCellValueFactory(new PropertyValueFactory<Game,DoubleProperty>("rate"));
+					columnDouble.setCellValueFactory(new PropertyValueFactory<GameTable,DoubleProperty>("rate"));
 					columnDouble.setStyle("-fx-alignment: center ;");
 					table.getColumns().add(columnDouble);
 					break;
 				case 8:
-					columnStr.setCellValueFactory(new PropertyValueFactory<Game,String>("tagsS"));
+					columnStr.setCellValueFactory(new PropertyValueFactory<GameTable,String>("tagsS"));
 					table.getColumns().add(columnStr);
 					break;
 				case 9:
-					columnStr.setCellValueFactory(new PropertyValueFactory<Game,String>("addDate"));
+					columnStr.setCellValueFactory(new PropertyValueFactory<GameTable,String>("addDate"));
 					table.getColumns().add(columnStr);
 					break;
 					default:
@@ -199,8 +237,8 @@ public class Central extends BorderPane {
 		table.setTranslateX(0);
 		table.setLayoutX(Window.central.width/20);
 		table.getColumns().forEach(e->{
-			TableColumn<Game,Object> columnO = (TableColumn<Game, Object>) e;
-			columnO.setCellFactory(f->new TableCell<Game,Object>() {
+			TableColumn<GameTable,Object> columnO = (TableColumn<GameTable, Object>) e;
+			columnO.setCellFactory(f->new TableCell<GameTable,Object>() {
 				@Override
                 protected void updateItem(Object item, boolean empty) {
                     super.updateItem(item, empty);                   

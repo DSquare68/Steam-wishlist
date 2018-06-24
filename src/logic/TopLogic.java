@@ -3,8 +3,8 @@ package logic;
 import java.awt.Dimension;
 import java.awt.print.Printable;
 
-import data.Games;
 import data.Settings;
+import game.Games;
 import gui.Central;
 import gui.Filtr;
 import gui.Welcome;

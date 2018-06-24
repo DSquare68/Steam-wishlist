@@ -56,9 +56,29 @@ public class InitSql implements SQLCommands{
 		try {
 			statement = conn.createStatement();
 		    statement.setQueryTimeout(30);  // set timeout to 30 sec.
-		    ResultSet rs = statement.executeQuery(CHECK_IF_TABLE_EXISTS+GAME+"'"); 
+		    ResultSet rs = statement.executeQuery(CHECK_IF_TABLE_EXISTS+GAME_SCANNED+"'"); 
 		    if(rs.getInt(1)==0) {
-		    	statement.executeUpdate(init.initGame);
+		    	statement.executeUpdate(init.createGameScanned);
+		    }
+		    rs = statement.executeQuery(CHECK_IF_TABLE_EXISTS+GAME+"'"); 
+		    if(rs.getInt(1)==0) {
+		    	statement.executeUpdate(init.createGame);
+		    }
+		    rs = statement.executeQuery(CHECK_IF_TABLE_EXISTS+GAME_TABLE+"'"); 
+		    if(rs.getInt(1)==0) {
+		    	statement.executeUpdate(init.createGameTable);
+		    }
+		    rs = statement.executeQuery(CHECK_IF_TABLE_EXISTS+GAME_HISTORY+"'"); 
+		    if(rs.getInt(1)==0) {
+		    	statement.executeUpdate(init.createGameHistory);
+		    }
+		    rs = statement.executeQuery(CHECK_IF_TABLE_EXISTS+GAME_STATUS+"'"); 
+		    if(rs.getInt(1)==0) {
+		    	statement.executeUpdate(init.createGameStatus);
+		    }
+		    rs = statement.executeQuery(CHECK_IF_TABLE_EXISTS+GAME_BOUGHT+"'"); 
+		    if(rs.getInt(1)==0) {
+		    	statement.executeUpdate(init.createGameBought);
 		    }
 			}catch(Exception ex) {
 				ex.printStackTrace();

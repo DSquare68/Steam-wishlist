@@ -1,12 +1,16 @@
 package gui;
 
 import java.awt.Component;
+import java.util.ArrayList;
 
 import Resources.ResourceLoader;
-import data.Games;
 import data.Language;
 import data.Settings;
+import data.Tree;
 import data.Window;
+import game.GameScanned;
+import game.Games;
+import game.Game;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ChangeListener;
@@ -129,9 +133,16 @@ public class Welcome extends AnchorPane{
 	            @Override
 	            public Integer call() throws Exception {
 	                // mimic connecting to database
-	            	new Scraper(id.getText(), Long.valueOf(profile.getText().equals("") ? "0" : profile.getText()));
+	            	Scraper scrap= new Scraper(id.getText(), Long.valueOf(profile.getText().equals("") ? "0" : profile.getText()));
 	    			if(rememberMeBool) { Settings.setID(id.getText()); Settings.setProfile(Long.valueOf(profile.getText())); Settings.switchFirstOpen();Settings.switchShowWelcome();}
-	    			if(addToDateBaseBool) Sql.Insert.insertGames(Games.games);
+	    			if(addToDateBaseBool) {
+	    				ArrayList<GameScanned> gS= scrap.wczytajSource();
+	    				Tree<Double> treeWishList = Sql.get.getWishNumber(null);
+	    				ArrayList<Game> game =  new ArrayList<Game>();
+	    				gS.forEach(e->game.add(new Game(e,treeWishList==null ? 0.0 : treeWishList.find(treeWishList.getRoot(), e.getID()))));
+	    				Sql.Insert.insertOrReplaceGameScanned(gS); 
+	    				Sql.Insert.insertOrReplaceGames(game);
+	    			}
 	    			succeeded();
 	                return 0;
 	            }

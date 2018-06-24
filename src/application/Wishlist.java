@@ -1,10 +1,10 @@
 package application;
 	
-import data.Games;
 import data.Language;
 import data.SetSettings;
 import data.Settings;
 import data.Window;
+import game.Games;
 import gui.Central;
 import gui.Welcome;
 import javafx.application.Application;
@@ -24,7 +24,6 @@ public class Wishlist extends Application {
 				Welcome root = new Welcome();
 				scene = new Scene(root,Window.welcome.width,Window.welcome.height);
 			} else {
-				Sql.get.getAllGames();
 				Central centralPane = new Central();
 				scene = new Scene(centralPane,Window.central.width,Window.central.height);
 			}
