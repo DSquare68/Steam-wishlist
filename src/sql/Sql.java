@@ -286,10 +286,14 @@ public class Sql extends InitSql {
 			Tree<Integer> treeHash=getHash(null);
 			Games<Game> ggames = getAllGames(); 
 			if(treeHash==null) return null;
-			if(ggames==null) {System.out.println("ERRROR in get AllGamesTable not find in database game"); return null;}
+			if(ggames==null) {System.out.println("ERROR in get AllGamesTable not find in database game"); return null;}
 			int k=0;
-			while(k<treeHash.size()) {
-				gameList.add(new GameTable(ggames.getGames().get(k),treeHash.find(treeHash.getRoot(),ggames.getGames().get(k++).getID())));
+			while(k<ggames.getGames().size()) {
+				if(treeHash.find(treeHash.getRoot(),ggames.getGames().get(k).getID())!=null)
+					gameList.add(new GameTable(ggames.getGames().get(k),treeHash.find(treeHash.getRoot(),ggames.getGames().get(k++).getID())));
+				else {
+					k++;
+				}
 			}
 			games.setGames(gameList);
 			return games;
@@ -301,7 +305,7 @@ public class Sql extends InitSql {
 			try {
 				rs= statement.executeQuery(sql.SQLCommands.get.getGameHistory);
 				while(rs.next()) {
-					gameList.add(new GameHistory(rs.getInt(1), rs.getDouble(2), rs.getDouble(3), rs.getDouble(4), rs.getLong(5)));
+					gameList.add(new GameHistory(rs.getInt(1),rs.getInt(2), rs.getDouble(3), rs.getDouble(4), rs.getDouble(5), rs.getLong(6)));
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();

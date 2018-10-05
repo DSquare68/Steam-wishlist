@@ -4,13 +4,14 @@ public interface SQLCommands extends GameColumns{
 	static String initGameScanned=ID+" INTEGER PRIMARY KEY";
 	static String initGame=ID+" INTEGER PRIMARY KEY, "+NAME+" TEXT, "+LINK+" TEXT, "+RELEASED_DATE+" INTEGER, "+ADD_DATE+" INTEGER, "+TAGS+" TEXT, "+PRICE+" REAL, "+ORIGINAL_PRICE+" REAL, "+DISCOUNT+" DOUBLE, "+WISH_NUMBER+" REAL, "+RATE_POSITIVE+" INTEGER, "+RATE_ALL+" INTEGER, "+IMAGE_PATH+" TEXT ";
 	static String initGameTable=ID+" INTEGER PRIMARY KEY, "+HASH+" INTEGER ";
-	static String initGameHistory=ID+" INTEGER PRIMARY KEY, "+PRICE+" REAL, "+ORIGINAL_PRICE+" REAL, "+DISCOUNT+" DOUBLE, "+DISCOUNT_DATE+" INTEGER ";
+	static String initGameHistory=PK+" INTEGER PRIMARY KEY AUTOINCREMENT, "+ID+" INTEGER, "+PRICE+" REAL, "+ORIGINAL_PRICE+" REAL, "+DISCOUNT+" DOUBLE, "+DISCOUNT_DATE+" INTEGER ";
 	static String initGameStatus=ID+" INTEGER PRIMARY KEY, "+STATUS+" INTEGER ";
 	static String initGameBought=ID+" INTEGER PRIMARY KEY, "+BOUGHT_PRICE+" DOUBLE, "+BOUGHT_DATE+" INTEGER ";
 	static String allGameScanned=ID;
 	static String allGame=ID+", "+NAME+" , "+LINK+" , "+RELEASED_DATE+" , "+ADD_DATE+" , "+TAGS+" , "+PRICE+" , "+ORIGINAL_PRICE+" , "+DISCOUNT+" , "+WISH_NUMBER+" , "+RATE_POSITIVE+" , "+RATE_ALL+" , "+IMAGE_PATH;
 	static String allGameTable=ID+", "+HASH;
-	static String allGameHistory=ID+", "+PRICE+", "+ORIGINAL_PRICE+", "+DISCOUNT+", "+DISCOUNT_DATE;
+	static String allGameHistory=PK+", "+ID+", "+PRICE+", "+ORIGINAL_PRICE+", "+DISCOUNT+", "+DISCOUNT_DATE;
+	static String gameHistory=ID+", "+PRICE+", "+ORIGINAL_PRICE+", "+DISCOUNT+", "+DISCOUNT_DATE;
 	static String allGameStatus=ID+", "+STATUS;
 	static String allGameBought=ID+", "+BOUGHT_PRICE+", "+BOUGHT_DATE;
 	final static public String GAME="game", GAME_SCANNED="game_scanned",GAME_TABLE="game_table",GAME_HISTORY="game_history",GAME_STATUS="game_status",GAME_BOUGHT="game_bought"; 
@@ -29,7 +30,8 @@ public interface SQLCommands extends GameColumns{
 		String insertOrReplaceGameScanned="INSERT OR REPLACE INTO "+GAME_SCANNED+" ( "+allGameScanned+") VALUES ";
 		String insertOrReplaceGame="INSERT OR REPLACE INTO "+GAME+" ( "+allGame+") VALUES ";
 		String insertOrReplaceGameTable="INSERT OR REPLACE INTO "+GAME_TABLE+" ( "+allGameTable+") VALUES ";
-		String insertOrReplaceGameHistory="INSERT OR REPLACE INTO "+GAME_HISTORY+" ( "+allGameHistory+") VALUES ";
+		String insertOrReplaceGameHistoryPK="INSERT OR REPLACE INTO "+GAME_HISTORY+" ( "+allGameHistory+") VALUES ";
+		String insertOrReplaceGameHistory="INSERT OR REPLACE INTO "+GAME_HISTORY+" ( "+gameHistory+") VALUES ";
 		String insertOrReplaceGameStatus="INSERT OR REPLACE INTO "+GAME_STATUS+" ( "+allGameStatus+") VALUES ";
 		String insertOrReplaceGameBought="INSERT OR REPLACE INTO "+GAME_BOUGHT+" ( "+allGameBought+") VALUES ";
 	}

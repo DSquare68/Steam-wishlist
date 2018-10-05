@@ -17,6 +17,7 @@ public class Tree<T> {
         root.data=data;
     }
     public T find(Node<T> node,int key) {
+    	if(node==null||node.key==0) return null;
     	if(node.key==key) {
     		return node.data;
     	}else if(node.key>key){
@@ -146,7 +147,7 @@ public class Tree<T> {
  		return size;
  	}
     public static class Node<T> {
-        private int key;
+        private int key=0;
         private T data;
         private Node<T> parent;
         private Node<T> left;

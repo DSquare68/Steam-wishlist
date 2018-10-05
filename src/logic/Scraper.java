@@ -66,7 +66,7 @@ public class Scraper {
 		String checker="},\"";
 		String a;
 		while(true) {
-			if(inputLine.length()<1000) checker="}};";
+			if(inputLine.length()<2000) checker="}};";
 			gamesS.add(inputLine.substring(inputLine.indexOf(":{"),inputLine.indexOf(checker)));
 			a=inputLine.substring(0,inputLine.indexOf(":{"));
 			links.add(a.replaceAll("[>\\[\\]\":{}]","").replace("	var g_rgAppInfo = ", ""));
@@ -86,10 +86,13 @@ public class Scraper {
 				,getValue(gameLine, keys[9]));
 	}
 	public String getValue(String gameLine, String key) {
-		System.out.println(gameLine+"   "+key);
 		if(!gameLine.contains(key)) return "";
 		if(key.equals(keys[5])) { 
-			return gameLine.substring(gameLine.indexOf(key)+key.length()+2,gameLine.indexOf("z\\u0142<\\/div>"));
+			if(gameLine.indexOf(key)+key.length()+2<gameLine.indexOf("z\\u0142<\\/div>")) {
+				return gameLine.substring(gameLine.indexOf(key)+key.length()+2,gameLine.indexOf("z\\u0142<\\/div>"));
+			} else {
+				return gameLine.substring(gameLine.indexOf("discount_final_price")+"discount_final_price".length()+2,gameLine.indexOf("z\\u0142<\\/div>"));
+			}
 		}
 		gameLine=gameLine.substring(gameLine.indexOf("\""+key+"\":")+key.length()+1);
 		gameLine=gameLine.substring(2,gameLine.indexOf(",")<0 ? gameLine.length() : gameLine.indexOf(","));

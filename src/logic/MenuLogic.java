@@ -31,10 +31,10 @@ public class MenuLogic {
 	}
 	@SuppressWarnings("deprecation")
 	public static void saveDiscount(ArrayList<GameTable> array) {
-		array.forEach(e->{if(e.getDiscount()!=0 && !Sql.Check.historyGameExists(e.getID(),(new Date((new Date()).getYear(),(new Date()).getMonth(),(new Date()).getDate())).getTime())) Sql.Insert.insertOrReplaceGameHistory(new GameHistory(e.getID(), e.getPrice(), e.getOriginalPrice(), e.getDiscount(), (new Date((new Date()).getYear(),(new Date()).getMonth(),(new Date()).getDate())).getTime()));});
+		array.forEach(e->{if(e.getDiscount()!=0 && !Sql.Check.historyGameExists(e.getID(),(new Date((new Date()).getYear(),(new Date()).getMonth(),(new Date()).getDate())).getTime())) Sql.Insert.insertOrReplaceGameHistory(new GameHistory(0,e.getID(), e.getPrice(), e.getOriginalPrice(), e.getDiscount(), (new Date((new Date()).getYear(),(new Date()).getMonth(),(new Date()).getDate())).getTime()));});
 	}
 	public static void saveState(ArrayList<GameTable> array) {
-		
+		Sql.Insert.insertOrReplaceGamesTable(array);
 	}
 
 }

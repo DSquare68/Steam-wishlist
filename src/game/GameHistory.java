@@ -4,15 +4,16 @@ import sql.GameColumns;
 import sql.SQLCommands;
 
 public class GameHistory {
-	private int ID;
+	private int ID, PK;
 	private double price, originalPrice, discount;
 	private long discountDate;
 	public GameHistory() {
 		
 	}
-	public GameHistory(int iD, double price, double originalPrice, double discount, long discountDate) {
+	public GameHistory(int PK, int iD, double price, double originalPrice, double discount, long discountDate) {
 		super();
-		ID = iD;
+		this.PK=PK;
+		this.ID = iD;
 		this.price = price;
 		this.originalPrice = originalPrice;
 		this.discount = discount;
@@ -48,8 +49,14 @@ public class GameHistory {
 	public void setDiscountDate(long discountDate) {
 		this.discountDate = discountDate;
 	}
+	public int getPK() {
+		return PK;
+	}
+	public void setPK(int pK) {
+		PK = pK;
+	}
 	public String valuesAndColumnsToString() {
-		return GameColumns.ID+SQLCommands.EQUALS+ID+", "+GameColumns.PRICE+SQLCommands.EQUALS+price+", "+GameColumns.ORIGINAL_PRICE+SQLCommands.EQUALS+ID+", "+GameColumns.ID+SQLCommands.EQUALS+originalPrice+", "+GameColumns.DISCOUNT+SQLCommands.EQUALS+discount+", "+GameColumns.DISCOUNT_DATE+SQLCommands.EQUALS+discountDate;
+		return GameColumns.PK+SQLCommands.EQUALS+PK+", "+GameColumns.ID+SQLCommands.EQUALS+ID+", "+GameColumns.PRICE+SQLCommands.EQUALS+price+", "+GameColumns.ORIGINAL_PRICE+SQLCommands.EQUALS+ID+", "+GameColumns.ID+SQLCommands.EQUALS+originalPrice+", "+GameColumns.DISCOUNT+SQLCommands.EQUALS+discount+", "+GameColumns.DISCOUNT_DATE+SQLCommands.EQUALS+discountDate;
 	}
 	public String toInsert() {
 		return ID+", "+price+", "+originalPrice+", "+discount+", "+discountDate;

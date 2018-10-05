@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public interface GameColumns {
+	public static final String PK="pk";
 	public static final String ID="id";
     public static final String NAME="name";
     public static final String LINK="link";
