@@ -52,7 +52,7 @@ public class GameTable extends Game{
 		this.hash = hash;
 	}
 	public static String[] toTableNames() {	
-		String[] result = {Language.texts.getString("hash"),Language.texts.getString("title"),Language.texts.getString("price"),Language.texts.getString("originalPrice"),Language.texts.getString("discount"),Language.texts.getString("releasedDate"),Language.texts.getString("rate"),Language.texts.getString("tags"),Language.texts.getString("addDate"),Language.texts.getString("wishNumber")};
+		String[] result = {Language.texts.getString("hash"),Language.texts.getString("title"),Language.texts.getString("price"),Language.texts.getString("originalPrice"),Language.texts.getString("discount"),Language.texts.getString("releasedDate"),Language.texts.getString("wishNumber"),Language.texts.getString("rate"),Language.texts.getString("addDate"),Language.texts.getString("tags")};
 		return result;
 	}
 	public String valuesAndColumnsToString() {

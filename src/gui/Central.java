@@ -192,11 +192,11 @@ public class Central extends BorderPane {
 					table.getColumns().add(columnDouble);
 					break;
 				case 8:
-					columnStr.setCellValueFactory(new PropertyValueFactory<GameTable,String>("tagsS"));
+					columnStr.setCellValueFactory(new PropertyValueFactory<GameTable,String>("addDate"));
 					table.getColumns().add(columnStr);
 					break;
 				case 9:
-					columnStr.setCellValueFactory(new PropertyValueFactory<GameTable,String>("addDate"));
+					columnStr.setCellValueFactory(new PropertyValueFactory<GameTable,String>("tagsS"));
 					table.getColumns().add(columnStr);
 					break;
 					default:
@@ -236,6 +236,7 @@ public class Central extends BorderPane {
 		table.setPrefHeight(7*Window.central.height/10);
 		table.setTranslateX(0);
 		table.setLayoutX(Window.central.width/20);
+		final double columnWidth = Window.central.width/(80);
 		table.getColumns().forEach(e->{
 			TableColumn<GameTable,Object> columnO = (TableColumn<GameTable, Object>) e;
 			columnO.setCellFactory(f->new TableCell<GameTable,Object>() {
@@ -257,43 +258,43 @@ public class Central extends BorderPane {
 			switch(table.getColumns().indexOf(e)) {
 			case 0:
 				//hash
-				e.setPrefWidth(Window.central.width/40);
+				e.setPrefWidth(3*columnWidth);
 				break;
 			case 1:
 				//title
-				e.setPrefWidth(3*Window.central.width/11);
+				e.setPrefWidth(24*columnWidth);
 				break;
 			case 2:
 				//price
-				e.setPrefWidth(Window.central.width/25);
+				e.setPrefWidth(6*columnWidth);
 				break;
 			case 3:
 				//original price
-				e.setPrefWidth(Window.central.width/25);
+				e.setPrefWidth(6*columnWidth);
 				break;
 			case 4:
 				//discount
-				e.setPrefWidth(Window.central.width/25);
+				e.setPrefWidth(5*columnWidth);
 				break;
 			case 5:
 				//released date
-				e.setPrefWidth(Window.central.width/15);
+				e.setPrefWidth(7*columnWidth);
 				break;
 			case 6:
 				//wish number
-				e.setPrefWidth(Window.central.width/40);
+				e.setPrefWidth(6*columnWidth);
 				break;
 			case 7:
 				//rate
-				e.setPrefWidth(Window.central.width/30);
+				e.setPrefWidth(6*columnWidth);
 				break;
 			case 8:
-				//tags
-				e.setPrefWidth(2*Window.central.width/7);
+				//add date
+				e.setPrefWidth(7*columnWidth);
 				break;
 			case 9:
-				//add date
-				e.setPrefWidth(Window.central.width/15);
+				//tags
+				e.setPrefWidth(24*columnWidth);
 				break;
 				default:
 					System.out.println("Error in columns number");
