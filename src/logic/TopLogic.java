@@ -4,10 +4,13 @@ import java.awt.Dimension;
 import java.awt.print.Printable;
 
 import data.Settings;
+import game.GameTable;
 import game.Games;
 import gui.Central;
 import gui.Filtr;
 import gui.Welcome;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
@@ -51,7 +54,15 @@ public class TopLogic {
 	}
 
 	private static void quickShopAction(Button button) {
-		// TODO Auto-generated method stub
+		button.setOnAction(e->{
+			GameFinder gameFinder = new GameFinder(GameFinder.QUICK_SEARCH);
+			gameFinder.setBudget(150); // TODO in settings set value
+			gameFinder.randomWeight();
+			TableLogic.games=gameFinder.findGames(TableLogic.games);
+			ObservableList<GameTable> gamesList = FXCollections.observableArrayList();
+			gamesList.addAll(TableLogic.games.getGames());
+			Central.table.setItems(gamesList);
+		});
 		
 	}
 

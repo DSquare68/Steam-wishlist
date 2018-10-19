@@ -27,7 +27,7 @@ public class Rating {
 		this.allRate = allRate;
 	}
 	public double getPercentPositive() {
-		return (double) positive/allRate;
+		return (double) (Double.valueOf((double)positive/allRate).isNaN() ? 0 : (positive/allRate));
 	}
 	@Override
 	public String toString() {
