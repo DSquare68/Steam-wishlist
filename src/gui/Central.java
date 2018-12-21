@@ -154,6 +154,7 @@ public class Central extends BorderPane {
 			TableColumn<GameTable, BooleanProperty>columnBool =new TableColumn<>(COLUMNS[i]);
 			switch(i) {
 				case 0:
+					columnInt.setSortType(TableColumn.SortType.ASCENDING);
 					columnInt.setCellValueFactory(new PropertyValueFactory<GameTable,IntegerProperty>("hash"));
 					columnInt.setStyle("-fx-alignment: center ;");
 					table.getColumns().add(columnInt);
@@ -228,6 +229,7 @@ public class Central extends BorderPane {
 			}
 		});*/	
 		scaleTable();
+		table.getSortOrder().add(table.getColumns().get(0));
 	}
 	@SuppressWarnings( "unchecked" )
 	private void scaleTable() {

@@ -13,6 +13,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.HBox;
 import sql.Sql;
 
@@ -49,7 +50,10 @@ public class TopLogic {
 		
 	}
 	private static void homeAction(Button button) {
-		// TODO Auto-generated method stub
+		button.setOnAction(e->{
+			TableLogic.games=null;
+			TableLogic.addGameToTable();
+		});
 		
 	}
 
@@ -67,7 +71,18 @@ public class TopLogic {
 	}
 
 	private static void advanceShopAction(Button button) {
-		// TODO Auto-generated method stub
+		button.setOnMouseClicked(e->{
+			if(e.getButton()==MouseButton.PRIMARY) {
+				GameFinder gameFinder = new GameFinder(GameFinder.ADVANCE_SEARCH);
+				gameFinder.getWeights();
+				TableLogic.games=gameFinder.findGames(TableLogic.games);
+				ObservableList<GameTable> gamesList = FXCollections.observableArrayList();
+				gamesList.addAll(TableLogic.games.getGames());
+				Central.table.setItems(gamesList);
+			}else if(e.getButton()==MouseButton.SECONDARY) {
+				
+			}
+		});
 		
 	}
 

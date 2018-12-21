@@ -10,7 +10,6 @@ import game.GameTable;
 import game.Games;
 
 public class GameFinder {
-	
 	public final static String QUICK_SEARCH="quick_search";
 	public final static String ADVANCE_SEARCH="advance_search";
 	
@@ -121,5 +120,12 @@ public class GameFinder {
 		}
 		
 	
+	}
+	public void saveWeights() {
+		//TODO in settings files
+	}
+	public void getWeights() {
+		// TODO from settings files
+		
 	}
 }
