@@ -132,7 +132,6 @@ public class Tree<T> {
      // The function also prints height of every node
      public void preOrder(Node<T> node) {
          if (node!= null) {
-             System.out.print(node.key + " ");
              preOrder(node.left);
              preOrder(node.right);
          }

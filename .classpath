@@ -5,5 +5,56 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="lib" path="D:/Java/sql/sqlite-jdbc-3.23.1.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Users/Daniel/.m2/repository/com/google/guava/guava/31.0.1-jre/guava-31.0.1-jre.jar" sourcepath="C:/Users/Daniel/.m2/repository/com/google/guava/guava/31.0.1-jre/guava-31.0.1-jre-sources.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.groupId" value="com.google.guava"/>
+			<attribute name="maven.artifactId" value="guava"/>
+			<attribute name="maven.version" value="31.0.1-jre"/>
+			<attribute name="maven.scope" value="compile"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Daniel/.m2/repository/net/dv8tion/JDA/4.3.0_346/JDA-4.3.0_346.jar" sourcepath="C:/Users/Daniel/.m2/repository/net/dv8tion/JDA/4.3.0_346/JDA-4.3.0_346-sources.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.groupId" value="net.dv8tion"/>
+			<attribute name="maven.artifactId" value="JDA"/>
+			<attribute name="maven.version" value="4.3.0_346"/>
+			<attribute name="maven.scope" value="compile"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Daniel/.m2/repository/org/openjfx/javafx-graphics/13/javafx-graphics-13-win.jar" sourcepath="C:/Users/Daniel/.m2/repository/org/openjfx/javafx-graphics/13/javafx-graphics-13-sources.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="module" value="true"/>
+			<attribute name="maven.groupId" value="org.openjfx"/>
+			<attribute name="maven.artifactId" value="javafx-graphics"/>
+			<attribute name="maven.version" value="13"/>
+			<attribute name="maven.classifier" value="win"/>
+			<attribute name="maven.scope" value="compile"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Daniel/.m2/repository/org/openjfx/javafx-controls/17/javafx-controls-17-win.jar" sourcepath="C:/Users/Daniel/.m2/repository/org/openjfx/javafx-controls/17/javafx-controls-17-sources.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="module" value="true"/>
+			<attribute name="maven.groupId" value="org.openjfx"/>
+			<attribute name="maven.artifactId" value="javafx-controls"/>
+			<attribute name="maven.version" value="17"/>
+			<attribute name="maven.classifier" value="win"/>
+			<attribute name="maven.scope" value="compile"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Daniel/.m2/repository/org/openjfx/javafx-base/17/javafx-base-17-win.jar" sourcepath="C:/Users/Daniel/.m2/repository/org/openjfx/javafx-base/17/javafx-base-17-sources.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="module" value="true"/>
+			<attribute name="maven.groupId" value="org.openjfx"/>
+			<attribute name="maven.artifactId" value="javafx-base"/>
+			<attribute name="maven.version" value="17"/>
+			<attribute name="maven.classifier" value="win"/>
+			<attribute name="maven.scope" value="compile"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
